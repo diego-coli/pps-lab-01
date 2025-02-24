@@ -69,5 +69,4 @@ class SimpleBankAccountTest {
         bankAccount.withdraw(accountHolder.getId(), MONEY_100$);
         assertEquals(EXPECTED_100$, bankAccount.getBalance());
     }
-
 }
