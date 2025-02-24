@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SimpleBankAccountTest {
 
     public static final int NOT_EXISTING_USER_ID = 2;
+    public static final int FEE_1$ = 1;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
     public static final int INITIAL_BALANCE = 0;
@@ -18,6 +19,7 @@ class SimpleBankAccountTest {
     public static final int MONEY_70$ = 70;
     public static final int MONEY_50$ = 50;
     public static final int EXPECTED_100$ = 100;
+    public static final int EXPECTED_29$ = 29;
     public static final int EXPECTED_30$ = 30;
 
     @BeforeEach
@@ -28,7 +30,10 @@ class SimpleBankAccountTest {
 
     @Test
     void initialBalance() {
-        assertEquals(INITIAL_BALANCE, bankAccount.getBalance());
+        assertAll(
+                () -> assertEquals(INITIAL_BALANCE, bankAccount.getBalance()),
+                () -> assertEquals(1, accountHolder.getId())
+        );
     }
 
     @Test
@@ -48,7 +53,7 @@ class SimpleBankAccountTest {
     void withdraw() {
         bankAccount.deposit(accountHolder.getId(), MONEY_100$);
         bankAccount.withdraw(accountHolder.getId(), MONEY_70$);
-        assertEquals(EXPECTED_30$, bankAccount.getBalance());
+        assertEquals(EXPECTED_29$, bankAccount.getBalance());
     }
 
     @Test
