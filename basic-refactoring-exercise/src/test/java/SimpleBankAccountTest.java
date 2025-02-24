@@ -57,9 +57,17 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    void wrongWithdraw() {
+    void wrongUserWithdraw() {
         bankAccount.deposit(accountHolder.getId(), MONEY_100$);
         bankAccount.withdraw(NOT_EXISTING_USER_ID, MONEY_70$);
         assertEquals(EXPECTED_100$, bankAccount.getBalance());
     }
+
+    @Test
+    void notEnoughMoneyWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), MONEY_100$);
+        bankAccount.withdraw(accountHolder.getId(), MONEY_100$);
+        assertEquals(EXPECTED_100$, bankAccount.getBalance());
+    }
+
 }

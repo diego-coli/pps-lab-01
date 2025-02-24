@@ -36,11 +36,13 @@ public class SimpleBankAccount implements BankAccount {
     public void withdraw(final int userID, final double amount) {
         if (checkUser(userID) && isWithdrawAllowed(amount)) {
             this.balance = this.balance - amount - FEE;
+        } else if (!isWithdrawAllowed(amount)) {
+            System.out.println("\nERR: Withdraw not allowed - not enough money");
         }
     }
 
     private boolean isWithdrawAllowed(final double amount){
-        return this.balance >= amount;
+        return this.balance >= amount + FEE;
     }
 
     private boolean checkUser(final int id) {
