@@ -12,9 +12,18 @@ public class SmartDoorLockTest {
     private SmartDoorLock smartDoorLock;
 
     @BeforeEach
-    void isInitiallyUnlocked(){
+    void initSmartDoorLock(){
         smartDoorLock = new SimpleSmartDoorLock();
+    }
+
+    @Test
+    void isInitiallyUnlocked(){
         assertFalse(smartDoorLock.isLocked());
+    }
+
+    @Test
+    void isInitiallyBlocked(){
+        assertFalse(smartDoorLock.isBlocked());
     }
 
     @Test
